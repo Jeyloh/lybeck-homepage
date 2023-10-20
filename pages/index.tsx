@@ -49,11 +49,11 @@ export default function Home() {
   useEffect(() => {
     if (initialSplash) return;
     setTimeout(() => {
-      let i = 0;
+      let i = 1;
 
       let interval: NodeJS.Timeout;
       interval = setInterval(() => {
-        if (i > 1) {
+        if (i > 2) {
           clearInterval(interval)
           return
         }
