@@ -115,9 +115,8 @@ function invokeSplash(config: Config = { }) {
               className="flex lg:justify-center gap-2 flex-col lg:flex-row xl:w-1/4 lg:w-1/2 sm:w-1/3 cursor-pointer z-2 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-16 px-8 border-4 border-white text-4xl box-3d"
               style={{ transition: '0.2s' }}
           >
-            <p>Jørgen</p>
-            <p>Lybeck</p>
-            <p>Hansen</p>
+            <p>Amina</p>
+            <p>Ømer</p>
           </div>
         </div>
       </main>
