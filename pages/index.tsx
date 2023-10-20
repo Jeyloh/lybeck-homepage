@@ -24,13 +24,16 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
 
   useEffect(() => {
-    const existingScript = document.getElementById("fluid-animation-script");
-    if (existingScript) return;
-    const script = document.createElement("script");
-    script.id = "fluid-animation-script"
-    script.src = "/fluid-animation/script.js"
-    script.type = "text/javascript"
-    document.body.appendChild(script)
+    setTimeout( () => {
+
+      const existingScript = document.getElementById("fluid-animation-script");
+      if (existingScript) return;
+      const script = document.createElement("script");
+      script.id = "fluid-animation-script"
+      script.src = "/fluid-animation/script.js"
+      script.type = "text/javascript"
+      document.body.appendChild(script)
+    }, 1000)
   }, [])
 
   const [initialSplash, setInitialSplash] = useState(false)
@@ -57,7 +60,7 @@ export default function Home() {
         i++;
         invokeSplash(getConfig(i))
       }, 2000);
-    }, 1000)
+    }, 2000)
     setInitialSplash(true)
   }, [initialSplash])
 
@@ -109,7 +112,7 @@ function invokeSplash(config: Config = { }) {
           <canvas id="fluid-canvas"/>
           <div id={"my-box"}
               onClick={invokeRandomSplash}
-              className="cursor-pointer z-2 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 sm:w-1/3 py-16 px-8 border-4 border-white text-4xl box-3d"
+              className="flex lg:justify-center gap-2 flex-col lg:flex-row 2xl:w-1/4 lg:w-1/2 sm:w-1/3 cursor-pointer z-2 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-16 px-8 border-4 border-white text-4xl box-3d"
               style={{ transition: '0.2s' }}
           >
             <p>Jørgen</p>
@@ -117,13 +120,6 @@ function invokeSplash(config: Config = { }) {
             <p>Hansen</p>
           </div>
         </div>
-        <div className="z-10 max-w-xl w-full items-center justify-between font-mono text-sm lg:flex">
-          <h1>Hello</h1>
-          <p>I am based in Oslo</p>
-          <p>I am a coder</p>
-          <p>I work at FINN.no</p>
-        </div>
-
       </main>
   )
 }
