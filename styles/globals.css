@@ -43,7 +43,6 @@ body {
 }
 
 
-
 html, body {
   overflow: hidden;
   background-color: #000;
@@ -60,14 +59,6 @@ canvas {
   height: 100%;
 }
 
-.box-3d {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-}
-
-.box-3d:active {
-  transform: translate(-50%, -50%) scale(0.98);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.19), 0 3px 3px rgba(0, 0, 0, 0.23);
-}
 
 
 @keyframes pulse {
@@ -84,11 +75,16 @@ canvas {
 
 #my-box {
   font-family: 'Indie Flower', cursive;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  color: black;
+  font-weight: 700;
+  text-shadow: 0 0 2px black;
   animation: pulse 2s infinite;
 }
 
 #my-box:active {
   transform: translate(-50%, -50%) scale(0.7);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.19), 0 3px 3px rgba(0, 0, 0, 0.23);
+}
+
+#my-box:active {
+  transform: translate(-50%, -50%) scale(0.98);
 }

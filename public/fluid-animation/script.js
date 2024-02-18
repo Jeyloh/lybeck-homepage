@@ -30,6 +30,7 @@ SOFTWARE.
   const fluidCanvas = document.getElementById("fluid-canvas");
   resizeCanvas();
 
+  let allowInitialSplash = false;
   let activeGUI;
   let config = {
 
@@ -1355,21 +1356,26 @@ SOFTWARE.
 
   updateKeywords();
   initFramebuffers();
-  multipleSplats(parseInt(Math.random() * 20) + 5);
 
   let lastUpdateTime = Date.now();
   let colorUpdateTimer = 0.0;
+  if (allowInitialSplash) {
+    multipleSplats(parseInt(Math.random() * 20) + 5);
+  } else {
+    allowInitialSplash = true
+  }
+
   update();
 
   function update() {
-    const dt = calcDeltaTime();
-    if (resizeCanvas()) initFramebuffers();
-    updateColors(dt);
-    applyInputs();
-    if (!config.PAUSED) step(dt);
-    render(null);
-    requestAnimationFrame(update);
-  }
+      const dt = calcDeltaTime();
+      if (resizeCanvas()) initFramebuffers();
+      updateColors(dt);
+      applyInputs();
+      if (!config.PAUSED) step(dt);
+      render(null);
+      requestAnimationFrame(update);
+    }
 
   function calcDeltaTime() {
     let now = Date.now();
@@ -1711,6 +1717,32 @@ SOFTWARE.
     blit(dye.write);
     dye.swap();
   }
+
+  function createSplashAnimation(fromX, fromY, toX, toY, steps, color) {
+    const dx = toX - fromX;
+    const dy = toY - fromY;
+    const interval = 1 / steps;
+
+    for (let i = 0; i <= steps; i++) {
+      const progress = i * interval;
+      const currentX = fromX + dx * progress;
+      const currentY = fromY + dy * progress;
+      const velocityX = dx * progress;
+      const velocityY = dy * progress;
+
+      // Convert page XY to canvas XY
+      const canvasBounds = fluidCanvas.getBoundingClientRect();
+      const canvasX = (currentX - canvasBounds.left) / canvasBounds.width;
+      const canvasY = 1.0 - (currentY - canvasBounds.top) / canvasBounds.height;
+
+      // Schedule the splat to create a smooth animation
+      setTimeout(() => {
+        splat(canvasX, canvasY, velocityX, velocityY, color);
+      }, i * 100); // Adjust the timing to control the animation speed
+    }
+  }
+
+  window.createSplashAnimation = createSplashAnimation;
 
   function correctRadius(radius) {
     let aspectRatio = fluidCanvas.width / fluidCanvas.height;
