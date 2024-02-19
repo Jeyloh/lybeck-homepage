@@ -55,7 +55,6 @@ export default function Home() {
   //   };
   // }
 
-
   // Initial splash exploding 3 times
   // useEffect(() => {
   //   if (initialSplash) return;
