@@ -180,7 +180,7 @@ export default function Home() {
       const rounds = 6; // Total number of rounds
 
       // Function to create animations for one round
-      const createRoundAnimations = (roundIndex) => {
+      const createRoundAnimations = (roundIndex:number) => {
         for (let i = 0; i < numberOfSegments / 2; i++) {
           const angleOffset = roundIndex * (2 * Math.PI); // Offset for each round
           const angle1 = (i * 2 * Math.PI) / numberOfSegments + angleOffset;
