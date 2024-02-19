@@ -24,7 +24,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const [isScriptLoaded, setIsScriptLoaded] = useState(false);
-  const [startShow, setStartShow] = useState(false)
+  const [startShow, setStartShow] = useState(true)
 
   useEffect(() => {
     if(!startShow)return
@@ -157,6 +157,8 @@ export default function Home() {
       fieryExplosion,
     ][Math.floor(Math.random() * 6)];
   }
+
+
   useEffect(() => {
     if (isScriptLoaded && startShow) {
 
@@ -260,8 +262,6 @@ function invokeSplash(config: Config = { }) {
       <main
           className={`flex min-h-screen flex-col items-center justify-between ${inter.className}`}
       >
-        {startShow ?
-
         <div className="relative w-screen h-screen">
           <canvas id="fluid-canvas"/>
           <div id={"my-box"}
@@ -269,22 +269,11 @@ function invokeSplash(config: Config = { }) {
               className="flex justify-center items-center gap-2 flex-col lg:flex-row xl:w-1/4 lg:w-1/2 sm:w-1/3 cursor-pointer z-2 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-16 px-8 text-4xl "
               style={{ transition: '0.2s' }}
           >
-            <p>clickme</p>
+            <p>Ivor</p>
+            <p>30 år</p>
+            <p>{`<3`}</p>
           </div>
         </div>
-            :
-            <div className="relative w-screen h-screen">
-              <div
-                  className="flex flex-col justify-center gap-2 xl:w-1/4 lg:w-1/2 sm:w-1/2 cursor-pointer z-2 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-                >
-
-                <p className={"border-4 border-white p-2 my-16 text-lg"}>WARNING: This show may potentially trigger seizures for people with photosensitive epilepsy. Viewer discretion is advised.</p>
-
-                <button className={"text-4xl bg-white text-black p-4 rounded-lg"}
-                        onClick={() => setStartShow(true)}>Start show</button>
-            </div>
-            </div>
-        }
       </main>
   )
 }
